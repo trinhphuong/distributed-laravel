@@ -13,5 +13,7 @@ return [
 
     'language_folder_name' => 'lang',
 
-    'view_folder_name' => 'views'
+    'view_folder_name' => 'views',
+
+    'prefix' => ''
 ];

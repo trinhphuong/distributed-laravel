@@ -1,6 +1,6 @@
 <?php
 
-namespace Optimus\Api\System;
+namespace Phuongtt\Api\System;
 
 class Utilities
 {

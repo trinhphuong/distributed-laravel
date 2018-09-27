@@ -1,6 +1,6 @@
 <?php
 
-namespace Optimus\Api\System;
+namespace Phuongtt\Api\System;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -93,6 +93,7 @@ class RouteServiceProvider extends ServiceProvider
                     $router->group([
                         'middleware' => $protected ? $middleware : [],
                         'namespace'  => $namespace,
+                        'prefix'     => $config['prefix'],
                     ], function ($router) use ($path) {
                         require $path;
                     });

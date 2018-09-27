@@ -1,10 +1,10 @@
 <?php
 
-namespace Optimus\Api\System;
+namespace Phuongtt\Api\System;
 
 use Illuminate\Translation\TranslationServiceProvider as BaseTranslationServiceProvider;
-use Optimus\Api\System\Translation\DistributedFileLoader;
-use Optimus\Api\System\Utilties;
+use Phuongtt\Api\System\Translation\DistributedFileLoader;
+use Phuongtt\Api\System\Utilties;
 
 class TranslationServiceProvider extends BaseTranslationServiceProvider
 {

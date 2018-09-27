@@ -1,8 +1,8 @@
 {
-    "name": "optimus/distributed-laravel",
+    "name": "phuongtt/distributed-laravel",
     "autoload": {
         "psr-4": {
-            "Optimus\\Api\\System\\": "src/"
+            "Phuongtt\\Api\\System\\": "src/"
         }
     },
     "require": {
