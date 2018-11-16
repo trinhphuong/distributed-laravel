@@ -9,6 +9,10 @@ return [
 
     ],
 
+    'protection_basic_middleware' => [
+        'auth.basic.once'
+    ],
+    
     'resource_namespace' => 'resources',
 
     'language_folder_name' => 'lang',

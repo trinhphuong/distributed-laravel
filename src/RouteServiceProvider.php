@@ -62,6 +62,7 @@ class RouteServiceProvider extends ServiceProvider
         $config = $this->app['config']['optimus.components'];
 
         $middleware = $config['protection_middleware'];
+        $basicMiddleware = $config['protection_basic_middleware'];
 
         $highLevelParts = array_map(function ($namespace) {
             return glob(sprintf('%s%s*', $namespace, DIRECTORY_SEPARATOR), GLOB_ONLYDIR);
@@ -78,9 +79,10 @@ class RouteServiceProvider extends ServiceProvider
                 );
 
                 $fileNames = [
-                    'routes' => true,
-                    'routes_protected' => true,
-                    'routes_public' => false,
+                    'routes' => 2,
+                    'routes_protected' => 2,
+                    'routes_public' => 0,
+                    'routes_basic' => 1,
                 ];
 
                 foreach ($fileNames as $fileName => $protected) {
@@ -91,7 +93,7 @@ class RouteServiceProvider extends ServiceProvider
                     }
 
                     $router->group([
-                        'middleware' => $protected ? $middleware : [],
+                        'middleware' => ($protected === 2) ? $middleware : ($protected === 1 ? $basicMiddleware : []),
                         'namespace'  => $namespace,
                         'prefix'     => $config['prefix'],
                     ], function ($router) use ($path) {
