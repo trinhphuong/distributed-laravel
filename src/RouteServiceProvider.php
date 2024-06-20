@@ -63,6 +63,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $middleware = $config['protection_middleware'];
         $basicMiddleware = $config['protection_basic_middleware'];
+        $integrateMiddleware = @$config['protection_integrate_middleware'];
 
         $highLevelParts = array_map(function ($namespace) {
             return glob(sprintf('%s%s*', $namespace, DIRECTORY_SEPARATOR), GLOB_ONLYDIR);
@@ -83,6 +84,7 @@ class RouteServiceProvider extends ServiceProvider
                     'routes_protected' => 2,
                     'routes_public' => 0,
                     'routes_basic' => 1,
+                    'routes_integrate' => 3,
                 ];
 
                 foreach ($fileNames as $fileName => $protected) {
@@ -92,8 +94,18 @@ class RouteServiceProvider extends ServiceProvider
                         continue;
                     }
 
+                    if($protected === 2){
+                        $mdware = $middleware;
+                    }elseif($protected === 1){
+                        $mdware = $basicMiddleware;
+                    }elseif($protected === 3){
+                        $mdware = $integrateMiddleware;
+                    }else{
+                        $mdware = [];
+                    }
+
                     $router->group([
-                        'middleware' => ($protected === 2) ? $middleware : ($protected === 1 ? $basicMiddleware : []),
+                        'middleware' => $mdware,
                         'namespace'  => $namespace,
                         'prefix'     => $config['prefix'],
                     ], function ($router) use ($path) {
